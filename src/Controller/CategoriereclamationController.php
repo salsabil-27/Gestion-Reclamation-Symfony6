@@ -73,6 +73,7 @@ class CategoriereclamationController extends AbstractController
         
          $em->persist($CategorieReclamation);
          $em->flush();
+         
 
          return $this->redirectToRoute('listnew');
 

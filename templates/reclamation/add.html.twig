@@ -3,9 +3,9 @@
 
 {% block body %}
 
-<div style="display: flex;align-items: center;justify-content: center;margin-5 :-15px">
+ <div style="display: flex;align-items: center;justify-content: center;margin--5 :-15px ; padding:10px">
 <div class="row">
-                <div class="lg-2">
+                <div class="lg-8">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Ajouter Reclamation :</h5>
@@ -53,12 +53,14 @@
 
                   <div class="col-sm-10">
                    {{ form_widget(form.Ajouter,{'attr': {'class':'btn btn-outline-success'}}) }}
-                 
+                       
+    
+                
                   </div>
                 </div> 
                    {{form_end(form) }}
                  </form>
-
+                  
             </div>
           </div>
 

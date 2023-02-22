@@ -2,7 +2,7 @@
 
  {% block body %}
 
- <div class="row" style="snow: flex;align-items: center;justify-content: center;margin-top :200px">
+ <div class="row" style="snow: flex;align-items: center;justify-content: center;margin-top :100px">
  <div class="col-lg-7">
  <div class="card">
  <div class="card-body">
@@ -43,7 +43,7 @@
  
 
 <div class="col-sm-5">
- <td><a href="{{path('su',{'id':s.id} )}}">Supprimer</a></td>  
+ <td><a href="{{path('su',{'id':s.id} )}}" onclick="return confirm('Vous êtes sûr de supprimer cette Categorie?');" >Supprimer</a></td>  
  <td><a href="{{path('update',{'id':s.id} )}}">Modifier</a></td>  
  </div>
 
@@ -53,7 +53,7 @@
   </table>
      <div class="col-sm-10">
   <a href="{{path('add')}}">
-     <button type="button" class="btn btn-outline-dark">Ajouter</button>
+     <button type="button" class="btn btn-outline-dark" >Ajouter</button>
                  
      </a>
       </div> 

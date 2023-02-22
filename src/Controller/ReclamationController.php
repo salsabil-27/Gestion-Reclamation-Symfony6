@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
+use Symfony\Component\Mime\Message;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ReclamationController extends AbstractController
@@ -72,13 +72,18 @@ class ReclamationController extends AbstractController
         
          $em->persist($Reclamation);
          $em->flush();
+         
 
-         return $this->redirectToRoute('FR');
+         return $this->redirectToRoute('AddSuccess');
+         
+
+         
 
         }
         return $this->render('reclamation/Add.html.twig',[
 
             'form'=>$form->createView()
+           
         ]);
 
 
@@ -122,5 +127,11 @@ class ReclamationController extends AbstractController
             'controller_name' => 'ReclamationController',
         ]);
     }
-    
+    #[Route('/AddSuccess', name: 'AddSuccess')]
+    public function ajouteSuccess()
+{
+    return $this->render('FrontReclamation/AddSuccess.html.twig', [
+        'message' => 'L\'Votre Reclamation est envouyée avec succès !',
+    ]);
+}
 }
