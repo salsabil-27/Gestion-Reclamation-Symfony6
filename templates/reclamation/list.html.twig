@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+ {% block body %}
+
+ <div class="row" style="display: flex;align-items: center;justify-content: center;margin-top :150px">
+ <div class="col-lg-7">
+ <div class="card">
+ <div class="card-body">
+ <h5 class="card-title"> Liste des Reclamations </h5>
+  <div class="card">
+            <div class="card-body">
+ <table class="table table-bubble">
+ <thead>
+ <th>ID</th>
+ <th>type</th>
+ <th>email</th>
+ <th>objetR </th>
+ <th>contenue </th>
+ 
+ <th>supprimer</th>
+ <th>Modifier</th>
+
+ </tr>
+ </thead>
+ {% for c in reclamation %}
+ <tr>
+ <td> {{c.id}}  </td>
+ <td> {{c.type.libelle}}  </td>
+ <td> {{c.emailReclamation}}  </td>
+ <td> {{c.ObjetReclamation}} </td>
+ <td> {{c.ContenueReclamation}} </td>
+ 
+
+<div class="col-sm-5">
+<td><a href="{{path('s',{'id':c.id} )}}">
+ <button onclick="confirmer()" type="button" class="btn btn-outline-info">Supprimer</button></a></td> 
+  
+  <td><a href="{{path('up',{'id':c.id} )}}">
+  <button type="button" class="btn btn-outline-info">Modifier</button></a></td> 
+</div> 
+ </tr>
+ {% endfor %}
+</tbody>
+  </table>
+
+   
+   
+   </div>
+    </div>
+
+
+
+
+
+ {% endblock %}

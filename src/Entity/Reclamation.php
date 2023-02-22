@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ReclamationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ReclamationRepository::class)]
 class Reclamation
@@ -14,16 +15,22 @@ class Reclamation
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Email(message:"email is not a valid email")]
+    #[Assert\NotBlank(message:"email IS required")]
     private ?string $emailReclamation = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message:"objetR IS required")]
     private ?string $ObjetReclamation = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message:"contenue IS required")]
     private ?string $ContenueReclamation = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $typeUser = null;
+    #[ORM\ManyToOne(inversedBy: 'reclamations')]
+    private ?CategorieReclamation $type = null;
+
+
 
     public function getId(): ?int
     {
@@ -66,15 +73,17 @@ class Reclamation
         return $this;
     }
 
-    public function getTypeUser(): ?string
+    public function getType(): ?CategorieReclamation
     {
-        return $this->typeUser;
+        return $this->type;
     }
 
-    public function setTypeUser(?string $typeUser): self
+    public function setType(?CategorieReclamation $type): self
     {
-        $this->typeUser = $typeUser;
+        $this->type = $type;
 
         return $this;
     }
+
+ 
 }
