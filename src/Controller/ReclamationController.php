@@ -73,7 +73,7 @@ class ReclamationController extends AbstractController
          $em->persist($Reclamation);
          $em->flush();
 
-         return $this->redirectToRoute('list_reclamation');
+         return $this->redirectToRoute('FR');
 
         }
         return $this->render('reclamation/Add.html.twig',[
