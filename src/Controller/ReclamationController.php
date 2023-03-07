@@ -1,21 +1,39 @@
 <?php
 
-namespace App\Controller;
-use App\Entity\Reclamation;
-use App\Form\ReclamationType;
 
+namespace App\Controller;
+use App\Service\MailerService;
+use App\Entity\Reclamation;
+use Doctrine\ORM\EntityManager;
+use Symfony\Component\Mime\Email;
 use App\Repository\ReclamationRepository;
+use App\Form\ReclamationType;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mime\Message;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Mailer\MailerInterface ;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\HttpKernel\KernelInterface;
+use Doctrine\DBAL\Driver\Connection;
+
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart as ChartsPieChart;
+
+
 
 class ReclamationController extends AbstractController
-{
+{  
+     private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    } 
+    
+
     #[Route('/reclamation', name: 'app_reclamation')]
     public function index(): Response
     {
@@ -59,26 +77,24 @@ class ReclamationController extends AbstractController
     }
     #[Route('/addreclamation', name: 'a')]
 
-    public function ajouter(Request $request , EntityManagerInterface $em)
-    {
+    public function ajouter(Request $request , EntityManagerInterface $em )
+    {   
         $Reclamation= new Reclamation();
         $form=$this->createForm(ReclamationType::class,$Reclamation);
         $form->add('Ajouter', SubmitType::class);
 
         $form->handleRequest($request);
+    
 
         if( $form->isSubmitted() && $form->isValid())
-        {
+        { 
         
+         
          $em->persist($Reclamation);
          $em->flush();
-         
-
          return $this->redirectToRoute('AddSuccess');
-         
-
-         
-
+        
+        
         }
         return $this->render('reclamation/Add.html.twig',[
 
@@ -86,7 +102,7 @@ class ReclamationController extends AbstractController
            
         ]);
 
-
+       
     }
     #[Route('/upreclamation/{id}', name: 'up')]
 
@@ -134,4 +150,38 @@ class ReclamationController extends AbstractController
         'message' => 'L\'Votre Reclamation est envouyée avec succès !',
     ]);
 }
+
+#[Route('/stat', name: 'stat')]
+public function typeReclamationPlusReclamee(EntityManagerInterface $entityManager): Response
+    {
+        // Récupérer toutes les réclamations dans la base de données
+        $reclamations =$entityManager->getRepository(Reclamation::class)->findAll();
+      
+
+        // Analyser les types de réclamation et compter leur fréquence
+        foreach ($reclamations as $reclamation) {
+            $type = $reclamation->getObjetReclamation();
+            if (!isset($typeCounts[$type])) {
+                $typeCounts[(string)$type] = 1;
+            } else {
+                $typeCounts[$type]++;
+            }
+        }
+
+        // Trier les types de réclamation par ordre décroissant de fréquence d'apparition
+        arsort($typeCounts);
+
+        // Obtenir le type de réclamation le plus réclamé
+        $mostFrequentType = array_key_first($typeCounts);
+
+        // Transmettre les données à la vue
+        return $this->render('reclamation/stats.html.twig', [
+            'mostFrequentType' => $mostFrequentType,
+            'typeCounts' => $typeCounts
+        ]);
+    }
+
+
 }
+
+

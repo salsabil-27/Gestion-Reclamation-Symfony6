@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ReclamationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ReclamationRepository::class)]
@@ -12,19 +13,23 @@ class Reclamation
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+   
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Email(message:"email is not a valid email")]
     #[Assert\NotBlank(message:"email IS required")]
+   
     private ?string $emailReclamation = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\NotBlank(message:"objetR IS required")]
+    
     private ?string $ObjetReclamation = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\NotBlank(message:"contenue IS required")]
+    
     private ?string $ContenueReclamation = null;
 
     #[ORM\ManyToOne(inversedBy: 'reclamations')]
