@@ -77,7 +77,7 @@ class ReclamationController extends AbstractController
     }
     #[Route('/addreclamation', name: 'a')]
 
-    public function ajouter(Request $request , EntityManagerInterface $em )
+    public function ajouter(Request $request , EntityManagerInterface $em,MailerInterface $mailer )
     {   
         $Reclamation= new Reclamation();
         $form=$this->createForm(ReclamationType::class,$Reclamation);
@@ -88,10 +88,22 @@ class ReclamationController extends AbstractController
 
         if( $form->isSubmitted() && $form->isValid())
         { 
-        
-         
+          
+            $email = (new Email())
+            ->from('Client.Xshape@example.com')
+            ->to('salsabil.zaabar@esprit.tn')
+            //->cc('cc@example.com')
+            //->bcc('bcc@example.com')
+            //replyTo($this->replyTo)
+            //->priority(Email::PRIORITY_HIGH)
+            ->subject('New Reclamation!')
+            ->text('Sending emails is fun again!')
+            ->html('Une nouvelle reclamation est ajouté check List Relamation!');
+            $mailer->send($email);
          $em->persist($Reclamation);
          $em->flush();
+
+        
          return $this->redirectToRoute('AddSuccess');
         
         
@@ -117,9 +129,10 @@ class ReclamationController extends AbstractController
 
         if( $form->isSubmitted() && $form->isValid())
         {  
-
+            
             $em->persist($Reclamation);
              $em->flush();
+             
         return $this->redirectToRoute('list_reclamation');
 
         }
@@ -180,7 +193,8 @@ public function typeReclamationPlusReclamee(EntityManagerInterface $entityManage
             'typeCounts' => $typeCounts
         ]);
     }
-
+   
+    
 
 }
 
