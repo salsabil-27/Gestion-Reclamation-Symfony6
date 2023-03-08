@@ -50,7 +50,7 @@ class ReclamationController extends AbstractController
     }
     #[Route('/listreclamation', name: 'list_reclamation')]
     public function afficher(ManagerRegistry $doctrine): Response
-    {
+    {    
         $repository= $doctrine->getRepository(Reclamation::class); 
 
         $Reclamation=$repository->findall();
@@ -193,9 +193,7 @@ public function typeReclamationPlusReclamee(EntityManagerInterface $entityManage
             'typeCounts' => $typeCounts
         ]);
     }
-   
-    
-
 }
+
 
 
