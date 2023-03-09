@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+ {% block body %}
+ 
+
+<div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px">
+
+
+  <div class="col-lg-7">
+  
+  
+    <div class="card-body">
+    
+
+
+
+
+
+
+      <h5 class="card-title">Liste des événements</h5>
+      
+<div class="dataTable-search"> <form method="post" action ="{{path('recherche')}}"> 
+ <input class="dataTable-input"  name="search" type="text"> <input  class="btn btn-outline-primary" type="submit" value="chercher">
+
+</form></div></div>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Type</th>
+            <th>Titre</th>
+            <th>Date debut</th>
+            <th>Date fin</th>
+            <th>Lieu</th>
+            <th>Image</th>
+            <th style="width: 1000px;">Description</th>
+            <th>Suppression</th>
+            <th>Modifier</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for c in evenement %}
+          <tr>
+            <td>{{c.id}}</td>
+            <td>{{c.type.TypeName}}</td>
+            <td>{{c.titreEvent}}</td>
+            <td>{{c.DateDebutEvent|date('Y-m-d H:i:s')}}</td>
+            <td>{{c.DateFinEvent|date('Y-m-d h:i:s')}}</td>
+            <td>{{c.PlaceEvent}}</td>
+            <td style="max-width: 200px;"><img src="{{ asset('assets/uploads/' ~ c.imageEvenement) }}" style="max-width: 100%; height: auto;"></td>
+            <td style="width: 3000px;">{{c.DescriptionEvent}}</td>
+          
+
+          <td><a href="{{path('s',{'id':c.id} )}}">
+          <button  type="button" class="btn btn-outline-danger" onclick="return confirm('Vous êtes sûr de supprimer cette Reclamation?');">
+ Supprimer</button></a></td>
+ 
+            <td><a class="btn btn-outline-success" href="{{path('u',{'id':c.id})}}" role="button">update</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <a class="btn btn-outline-primary" href="{{path('a')}}" role="button">ajouter un événement</a>
+    </div>
+  </div>
+</div>
+
+
+
+ {% endblock %}
+ 

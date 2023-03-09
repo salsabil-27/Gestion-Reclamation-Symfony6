@@ -63,4 +63,34 @@ class EvenementRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+
+
+public function findByCriteria($data)
+{
+    $qb = $this->createQueryBuilder('e');
+    
+    if ($data['titreEvent']) {
+        $qb->andWhere('e.titreEvent = :titreEvent')
+           ->setParameter('titreEvent', $data['titreEvent']);
+    }
+    
+    if ($data['startDate']) {
+        $qb->andWhere('e.dateDebutEvent >= :startDate')
+           ->setParameter('startDate', $data['startDate']);
+    }
+    
+    if ($data['endDate']) {
+        $qb->andWhere('e.dateFinEvent <= :endDate')
+           ->setParameter('endDate', $data['endDate']);
+    }
+    
+    if ($data['location']) {
+        $qb->andWhere('e.placeEvent LIKE :location')
+           ->setParameter('location', '%'.$data['location'].'%');
+    }
+    
+    return $qb->getQuery()->getResult();
+}
+
 }

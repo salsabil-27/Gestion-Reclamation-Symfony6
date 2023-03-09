@@ -1,0 +1,88 @@
+
+
+
+
+{% extends 'Front/baseFront.html.twig' %}
+
+
+
+{% block body %}
+<head>
+  <link rel="stylesheet" href="{{ asset('path/to/styles.css') }}">
+</head>
+
+  <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="{{asset("front/img/breadcrumb/classes-breadcrumb.jpg")}}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <h2>Evenements</h2>
+                        <div class="breadcrumb-option">
+                            <a href="./index.html"><i class="fa fa-home"></i> Home</a>
+                            <span>liste Favorite</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- About Section Begin -->
+    <section class="about-section about-page spad">
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      
+      <div class="d-flex flex-wrap justify-content-between">
+        {% if favorites|length == 0 %}
+    <p>You don't have any favorites yet.</p>
+{% else %}
+    <div class="row">
+        {% for event in favorites %}
+            <div class="col-md-6">
+                <img src="{{ asset('assets/uploads/' ~ event.imageEvenement) }}" alt="{{ event.titreEvent }}" class="img-fluid">
+            </div>
+            <div class="col-md-6">
+                <h2 class="event-title">{{ event.titreEvent }}</h2>
+                <p class="event-date">{{ event.DateDebutEvent|date('Y-m-d')}} - {{ event.DateFinEvent|date('Y-m-d ')}}</p>
+                <p class="event-location"> {{event.PlaceEvent}}</p>
+                <p class="event-description">{{ event.DescriptionEvent }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+
+
+
+<script>
+  const checkbox = document.getElementById('heart');
+  checkbox.addEventListener('change', function() {
+    const id = checkbox.getAttribute('data-id');
+    const link = document.querySelector('.heart-link');
+    if (this.checked) {
+      link.setAttribute('href', '{{ path("favorite_add", {"id": "' + id + '"}) }}');
+    } else {
+      link.setAttribute('href', '{{ path("favorite_remove", {"id": "' + id + '"}) }}');
+    }
+  });
+</script>
+
+
+  
+      
+
+    
+
+
+  </div>
+  
+</div>
+
+
+    </section>
+    <!-- About Section End -->
+{% endblock %}

@@ -12,9 +12,6 @@
             "./src/ApiResource/.gitignore"
         ]
     },
-    "cmen/google-charts-bundle": {
-        "version": "5.0.1"
-    },
     "doctrine/annotations": {
         "version": "1.14",
         "recipe": {
@@ -50,6 +47,15 @@
             "./config/packages/doctrine_migrations.yaml",
             "./migrations/.gitignore"
         ]
+    },
+    "jms/serializer-bundle": {
+        "version": "5.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "4.0",
+            "ref": "cc04e10cf7171525b50c18b36004edf64cb478be"
+        }
     },
     "nelmio/cors-bundle": {
         "version": "2.3",

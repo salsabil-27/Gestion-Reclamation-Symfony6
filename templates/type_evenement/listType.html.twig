@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+ {% block body %}
+
+ <div class="row" style="display: flex;align-items: center;justify-content: center;margin-top :150px">
+ <div class="col-lg-7">
+ <div class="card">
+ <div class="card-body">
+ <h5 class="card-title"> Liste des types d'evenements </h5>
+
+ <table class="table table-striped">
+ <thead>
+ <th>ID</th>
+  <th>Type</th>
+  
+  <th>Suppression</th>
+ <th>Modifier</th>
+
+ 
+ 
+
+ </tr>
+ </thead>
+ {% for c in type %}
+ <tr>
+ <td> {{c.id}}  </td>
+ <td> {{c.TypeName}} </td>
+  
+ 
+
+ 
+         <td><a href="{{path('supprimer',{'id':c.id} )}}">
+          <button  type="button" class="btn btn-outline-danger" onclick="return confirm('Vous êtes sûr de supprimer cette Reclamation?');">
+ Supprimer</button></a></td>
+ 
+
+ 
+<td><a class="btn btn-outline-success" href="{{path('update',{'id':c.id} )}}" role="button">Modifier</a></td>
+
+ </tr>
+ {% endfor %}
+</tbody>
+  </table>
+
+    
+    <a class="btn btn-outline-primary" href="{{path('ajouter')}}" role="button">ajouter le  type d'événement </a>
+   </div>
+    </div>
+
+
+
+ {% endblock %}

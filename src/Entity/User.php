@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
@@ -31,6 +33,21 @@ class User
 
     #[ORM\Column(nullable: true)]
     private ?int $cinUser = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: FavoriteEvent::class)]
+    private Collection $favoriteEvents;
+
+    #[ORM\ManyToOne(inversedBy: 'user')]
+    private ?RegisterEvenement $registerEvenement = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: RegisterEvenement::class)]
+    private Collection $registerEvenements;
+
+    public function __construct()
+    {
+        $this->favoriteEvents = new ArrayCollection();
+        $this->registerEvenements = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -105,6 +122,78 @@ class User
     public function setCinUser(?int $cinUser): self
     {
         $this->cinUser = $cinUser;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, FavoriteEvent>
+     */
+    public function getFavoriteEvents(): Collection
+    {
+        return $this->favoriteEvents;
+    }
+
+    public function addFavoriteEvent(FavoriteEvent $favoriteEvent): self
+    {
+        if (!$this->favoriteEvents->contains($favoriteEvent)) {
+            $this->favoriteEvents->add($favoriteEvent);
+            $favoriteEvent->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavoriteEvent(FavoriteEvent $favoriteEvent): self
+    {
+        if ($this->favoriteEvents->removeElement($favoriteEvent)) {
+            // set the owning side to null (unless already changed)
+            if ($favoriteEvent->getUser() === $this) {
+                $favoriteEvent->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getRegisterEvenement(): ?RegisterEvenement
+    {
+        return $this->registerEvenement;
+    }
+
+    public function setRegisterEvenement(?RegisterEvenement $registerEvenement): self
+    {
+        $this->registerEvenement = $registerEvenement;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, RegisterEvenement>
+     */
+    public function getRegisterEvenements(): Collection
+    {
+        return $this->registerEvenements;
+    }
+
+    public function addRegisterEvenement(RegisterEvenement $registerEvenement): self
+    {
+        if (!$this->registerEvenements->contains($registerEvenement)) {
+            $this->registerEvenements->add($registerEvenement);
+            $registerEvenement->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRegisterEvenement(RegisterEvenement $registerEvenement): self
+    {
+        if ($this->registerEvenements->removeElement($registerEvenement)) {
+            // set the owning side to null (unless already changed)
+            if ($registerEvenement->getUser() === $this) {
+                $registerEvenement->setUser(null);
+            }
+        }
 
         return $this;
     }

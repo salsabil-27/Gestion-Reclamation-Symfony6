@@ -1,0 +1,270 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Gutim Template">
+    <meta name="keywords" content="Gutim, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>X-Shape</title>
+    <style>
+.product-image-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 75%; /* set the desired aspect ratio */
+    overflow: hidden;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.product-image {
+    position: absolute;
+    
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+}
+.event-details-container {
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.event-title {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.event-date {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #000000;
+}
+
+.event-location {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #000000;
+}
+
+.event-description {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: #5a5450;
+}
+.breadcrumb-text h2 {
+  color: blue;
+}
+
+.breadcrumb-option a {
+  color: green;
+}
+.event-title {
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  line-height: 1.2;
+  font-family: 'Helvetica Neue', sans-serif;
+  color: #F48541;
+  text-transform: uppercase;
+}
+.event-title1
+ {
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  line-height: 1.2;
+  font-family: 'Helvetica Neue', sans-serif;
+  color: 
+#F48541;
+  text-transform: uppercase;
+}
+
+.product-image {
+  transition: transform 0.5s;
+}
+
+
+
+
+
+
+
+
+</style>
+
+        {% block stylesheets %}
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap"
+        rel="stylesheet">
+
+    <!-- Css Styles -->
+    
+    <link rel="stylesheet" href="{{ asset('front/css/bootstrap.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('front/css/font-awesome.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('front/css/owl.carousel.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('front/css/magnific-popup.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('front/css/slicknav.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('front/css/style.css') }}" type="text/css">
+  
+</head>
+
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+
+
+    <!-- Header Section Begin -->
+    <header class="header-section">
+             {% block Header %}
+
+        <div class="container">
+            <div class="logo">
+            
+                <a href="./index.html">
+                    <img src="{{ asset('front/img/logo.png')}}" alt="">
+                </a>
+            </div>
+            <div class="nav-menu">
+                <nav class="mainmenu mobile-menu">
+                    <ul>
+
+                        <li class="active"><a href="{{path('home')}}">Home</a></li>
+                        <li><a href=" {{path('about')}}">About</a></li>
+                        <li><a href="#">Classes</a></li>
+                        <li><a href="#">boutique</a></li>
+                        <li><a href="{{path('DisplayEvenement')}}">Events</a></li>
+                        <li><a href="#">Contacts</a></li>
+                    </ul>
+                </nav>
+                <a href="#" class="primary-btn signup-btn">Sign Up Today</a>
+            </div>
+            <div id="mobile-menu-wrap"></div>
+        </div>
+          {% endblock %}
+
+    </header>
+    <!-- Header End -->
+
+
+   <!-- Hero Section Begin -->
+    <!-- Hero Section Begin -->
+    
+            {% block body %}
+
+                          {% endblock %}
+
+
+    <!-- Hero Section End -->
+
+       
+      
+ 
+
+
+
+            
+
+    <!-- Latest Blog Section End -->
+            {% block footer %}
+
+
+    <!-- Footer Banner Section Begin -->
+
+    <!-- Footer Banner Section End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="contact-option">
+                        <span>Phone</span>
+                        <p>(123) 118 9999 - (123) 118 9999</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="contact-option">
+                        <span>Address</span>
+                        <p>72 Kangnam, 45 Opal Point Suite 391</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="contact-option">
+                        <span>Email</span>
+                        <p>contactcompany@Gutim.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="subscribe-option set-bg" data-setbg="{{ asset('front/img/footer-signup.jpg')}}">
+                <div class="so-text">
+                    <h4>Subscribe To Our Mailing List</h4>
+                    <p>Sign up to receive the latest information </p>
+                </div>
+                <form action="#" class="subscribe-form">
+                    <input type="text" placeholder="Enter Your Mail">
+                    <button type="submit"><i class="fa fa-send"></i></button>
+                </form>
+            </div>
+            <div class="copyright-text">
+                <ul>
+                    <li><a href="#">Term&Use</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+                <p>&copy;<p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></p>
+                <div class="footer-social">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-instagram"></i></a>
+                    <a href="#"><i class="fa fa-dribbble"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+            {% endblock %}
+
+        {% block javascripts %}
+
+    <!-- Js Plugins -->
+    <!-- Vendor JS Files Front -->
+    <script src="{{ asset('front/js/jquery-3.3.1.min.js')}}"></script>
+    <script src="{{ asset('front/js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('front/js/jquery.magnific-popup.min.js')}}"></script>
+    <script src="{{ asset('front/js/mixitup.min.js')}}"></script>
+    <script src="{{ asset('front/js/jquery.slicknav.js')}}"></script>
+    <script src="{{ asset('front/js/owl.carousel.min.js')}}"></script>
+    <script src="{{ asset('front/js/main.js')}}"></script>
+
+    <script>
+    // Attach a click event listener to the heart checkbox
+document.querySelector('#heart').addEventListener('click', function() {
+  // Get the event ID from the data-id attribute
+  var eventId = this.dataset.id;
+
+  // Make an AJAX call to add/remove the event from favorites
+  // using the eventId variable
+});
+    </script>
+
+
+
+    
+
+
+
+
+
+     {% endblock %}
+</body>
+  {% endblock %}
+</html>

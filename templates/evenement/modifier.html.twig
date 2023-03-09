@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+<div style="display: flex;align-items: center;justify-content: center;margin-top :150px">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Modifier  evenement:</h5>
+
+              <!-- General Form Elements -->
+
+              
+
+              {{ form_start(f) }}
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-7 col-form-label">Titre</label>
+                  <div class="col-sm-10">
+              {{ form_widget(f.titreEvent ,{'attr': {'class':'form-control'}}) }}
+                  </div>
+                </div>
+                
+                
+  {{ form_start(f) }}
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-7 col-form-label">type</label>
+                  <div class="col-sm-10">
+              {{ form_widget(f.type ,{'attr': {'class':'form-control'}}) }}
+                  </div>
+                </div>
+                
+
+                 {{ form_start(f) }}
+                <div class="row mb-3">
+                  <label for="inputDate" class="col-sm-7 col-form-label">date début</label>
+                  <div class="col-sm-10">
+              {{ form_widget(f.DateDebutEvent,{'attr': {'class':'form-control'}}) }}
+                  </div>
+                </div>
+
+
+
+                   {{ form_start(f) }}
+                <div class="row mb-3">
+                  <label for="inputDate" class="col-sm-7 col-form-label">date fin</label>
+                  <div class="col-sm-10">
+              {{ form_widget(f.dateFinEvent,{'attr': {'class':'form-control'}}) }}
+                  </div>
+                </div>
+
+                
+                   {{ form_start(f) }}
+                <div class="row mb-3">
+                  <label for="inputDate" class="col-sm-7 col-form-label">Lieu </label>
+                  <div class="col-sm-10">
+              {{ form_widget(f.PlaceEvent,{'attr': {'class':'form-control'}}) }}
+                  </div>
+                </div>
+{{ form_start(f,{'attr' :{'novalidate': 'novalidate'}}) }}
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-7 col-form-label">image </label>
+                  <div class="col-sm-10">
+                      {{ form_errors(f.imageEvenement , {'attr': {'class':'text-danger'}}) }}
+              {{ form_widget(f.imageEvenement ,{'attr': {'class':'form-control'}}) }}
+          
+              
+                  </div>
+                </div>
+
+
+                 {{ form_start(f) }}
+                <div class="row mb-3">
+                  <label for="inputPassword" class="col-sm-7 col-form-label" >Description</label>
+                  <div class="col-sm-10">
+              {{ form_widget(f.DescriptionEvent,{'attr': {'class':'form-control'}})  }}
+                  </div>
+                </div>
+
+  
+
+
+
+  
+     {{ form_start(f) }}
+                
+                  <div class="col-sm-10">
+              {{ form_widget(f.modifier ,{'attr': {'class':'btn btn-outline-primary'}}) }}
+                  </div>
+                </div> 
+
+                {{form_end(f) }}
+
+
+
+              
+
+              </form><!-- End General Form Elements -->
+
+            </div>
+          </div>
+
+        </div>
+
+{% endblock %}
+
+

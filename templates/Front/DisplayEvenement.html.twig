@@ -1,0 +1,60 @@
+{% extends 'Front/baseFront.html.twig' %}
+  {% block body %}
+
+
+  
+<section class="breadcrumb-section set-bg" data-setbg="{{asset("front/img/breadcrumb/classes-breadcrumb.jpg")}}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <h2>Events</h2>
+                        <div class="breadcrumb-option">
+                            <a href="./index.html"><i class="fa fa-home"></i> Home</a>
+                            <span>Events</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+    
+
+    <!-- Blog Section Begin -->
+    <section class="blog-section spad">
+        <div class="container">
+            <div class="row">
+             {% for c in evenement %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-blog-item">
+                    
+
+                            <div class="product-image-container">
+                    <img src="{{ asset('assets/uploads/' ~ c.imageEvenement) }}" alt="" class="product-image">
+                </div>
+                        <div class="blog-widget">
+                        
+                           <h7 class="event-title1">{{ c.titreEvent }}</h7>
+                              <p class="event-date">{{ c.DateDebutEvent|date('Y-m-d')}} - {{c.DateFinEvent|date('Y-m-d ')}}</p>
+                            
+                            
+                               
+                              
+                           
+                         
+                        </div>
+                         
+                        
+                       
+
+                        <a href="{{path('details',{'id':c.id})}}"class="btn btn-primary">More Details</a>
+                  
+                
+                    </div>
+                
+                </div>
+                          {% endfor %}
+ 
+
+    {% endblock %}

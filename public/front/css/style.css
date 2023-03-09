@@ -65,7 +65,7 @@ h6 {
 p {
 	font-size: 16px;
 	font-family: "Poppins", sans-serif;
-	color: #7f4496;
+	color: #6b6b6b;
 	font-weight: 400;
 	line-height: 26px;
 	margin: 0 0 15px 0;
@@ -79,7 +79,7 @@ input:focus, select:focus, button:focus, textarea:focus {
 a:hover, a:focus {
 	text-decoration: none;
 	outline: none;
-	color: #cf66d3e8;
+	color: #fff;
 }
 ul, ol {
 	padding: 0;
@@ -113,7 +113,7 @@ ul, ol {
 	padding-bottom: 70px;
 }
 .text-white h1, .text-white h2, .text-white h3, .text-white h4, .text-white h5, .text-white h6, .text-white p, .text-white span, .text-white li, .text-white a {
-	color: #cf66d3e8;
+	color: #fff;
 }
 /* buttons */
 
@@ -122,20 +122,20 @@ ul, ol {
 	font-size: 16px;
 	font-weight: 600;
 	padding: 0 12px;
-	color: #cf66d3e8;
+	color: #ffffff;
 	text-align: center;
 	width: 160px;
 	height: 46px;
-	border-left: 2px solid #ab3ceb;
-	border-right: 2px solid #cf74eb;
+	border-left: 2px solid #eb3c5a;
+	border-right: 2px solid #f67831;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	background-position: 0 0, 0 100%;
 	background-repeat: no-repeat;
 	background-size: 100% 2px;
-	background-image: -webkit-gradient(linear, left top, right top, from(#eb3c5a), to(#ab3ceb)), -webkit-gradient(linear, left top, right top, from(#eb3c5a), to(#f67831));
-	background-image: -o-linear-gradient(left, #cf74eb 0%, #ab3ceb 100%), -o-linear-gradient(left, #cf74eb 0%, #ab3ceb 100%);
-	background-image: linear-gradient(to right,#cf74eb 0%, #ab3ceb 100%), linear-gradient(to right, #cf74eb 0%,#ab3ceb 100%);
+	background-image: -webkit-gradient(linear, left top, right top, from(#eb3c5a), to(#f67831)), -webkit-gradient(linear, left top, right top, from(#eb3c5a), to(#f67831));
+	background-image: -o-linear-gradient(left, #eb3c5a 0%, #f67831 100%), -o-linear-gradient(left, #eb3c5a 0%, #f67831 100%);
+	background-image: linear-gradient(to right, #eb3c5a 0%, #f67831 100%), linear-gradient(to right, #eb3c5a 0%, #f67831 100%);
 	-webkit-transition-duration: 1000ms;
 	-o-transition-duration: 1000ms;
 	transition-duration: 1000ms;
@@ -144,7 +144,7 @@ ul, ol {
 	z-index: 1;
 }
 .primary-btn:after {
-	color: #cf66d3e8;
+	color: #fff;
 	-webkit-transition-duration: 500ms;
 	-o-transition-duration: 500ms;
 	transition-duration: 500ms;
@@ -255,7 +255,7 @@ ul, ol {
 }
 .nav-menu .mainmenu ul li a {
 	font-size: 16px;
-	color: #cf66d3e8;
+	color: #ffffff;
 	font-weight: 600;
 	padding: 28px 0;
 	position: relative;
@@ -296,20 +296,20 @@ ul, ol {
 }
 .hero-text span {
 	font-size: 14px;
-	color: #cf66d3e8;
+	color: #f15d44;
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	font-weight: 600;
 }
 .hero-text h1 {
 	font-size: 72px;
-	color: #cf66d3e8;
+	color: #ffffff;
 	font-weight: 600;
 	margin-top: 11px;
 	margin-bottom: 18px;
 }
 .hero-text p {
-	color: #cf66d3e8;
+	color: #ffffff;
 	margin-bottom: 44px;
 }
 /*---------------------

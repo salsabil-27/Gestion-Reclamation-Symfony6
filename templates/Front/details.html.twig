@@ -1,0 +1,113 @@
+{% extends 'Front/baseFront.html.twig' %}
+
+
+
+
+{% block body %}
+<head>
+  <link rel="stylesheet" href="{{ asset('path/to/styles.css') }}">
+</head>
+
+
+<style>
+.heart {
+  width: 30px;
+  height: 30px;
+  fill: transparent;
+  stroke: red;
+  stroke-width: 2px;
+  transition: all 0.3s ease;
+}
+
+.heart-label {
+  display: inline-block;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+#heart:checked + .heart-label .heart {
+  fill: red;
+ 
+}
+
+
+
+
+</style>
+  <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="{{asset("front/img/breadcrumb/classes-breadcrumb.jpg")}}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <h2>Evenements</h2>
+                        <div class="breadcrumb-option">
+                            <a href="./index.html"><i class="fa fa-home"></i> Home</a>
+                            <span>Evenements</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- About Section Begin -->
+    <section class="about-section about-page spad">
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      <div class="d-flex flex-wrap justify-content-between">
+        <div class="product-image-container">
+          <img src="{{ asset('assets/uploads/' ~ evenement.imageEvenement) }}" alt="" class="product-image">
+        </div>
+      </div>
+    </div>
+   
+   <div class="col-md-7">
+  <div class="event-details-container">
+    <h1 class="event-title">{{ evenement.titreEvent }}</h1>
+    <p class="event-date">{{ evenement.DateDebutEvent|date('Y-m-d')}} - {{ evenement.DateFinEvent|date('Y-m-d ')}}</p>
+    <p class="event-location"> {{ evenement.PlaceEvent}}</p>
+    <p class="event-description">{{ evenement.DescriptionEvent }}</p>
+
+
+
+    
+
+
+<div>
+<div>
+  <input type="checkbox" id="heart" data-id="{{ evenement.id }}" />
+  <a href="{{ path('favorite_add', {'id': evenement.id}) }}" class="heart-link">
+    <label for="heart" class="heart-label">
+      <svg viewBox="0 0 512 512" class="heart">
+        <path d="M256 469.333l-24.448-21.803C103.296 325.781 32 267.776 32 179.307c0-55.296 45.344-100.651 101.12-100.651 44.053 0 78.549 28.16 94.453 48.341 15.883-20.181 50.411-48.341 94.464-48.341 55.776 0 101.12 45.355 101.12 100.651 0 88.469-71.296 146.474-199.552 268.224L256 469.333z" />
+      </svg>
+    </label>
+  </a>
+</div>
+
+</div>
+
+
+
+
+  
+      
+      <a href="{{ path('favorite_add', {'id': evenement.id}) }}" class="btn btn-danger" onclick="alert('Added to favorites!')">Add to favorites</a>
+{%dump(evenement.id)%}
+           <a href="{{ path('RegisterNow', {'id': evenement.id}) }}" class="btn btn-danger" >Register Now </a> {% dump(evenement)%}
+      <a href="{{ path('listeFavorite ') }}" class="btn btn-danger"> Liste favorite</a>
+ 
+
+
+  </div>
+  
+</div>
+
+
+    </section>
+    <!-- About Section End -->
+{% endblock %}
