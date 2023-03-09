@@ -21,8 +21,9 @@ use Symfony\Component\HttpKernel\KernelInterface;
 use Doctrine\DBAL\Driver\Connection;
 
 use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart as ChartsPieChart;
-
-
+use Symfony\Component\Validator\Constraint;
+use Symfony\Component\Validator\ConstraintValidator;
+use App\Validator\Constraints\InappropriateVocabulary;
 
 class ReclamationController extends AbstractController
 {  
@@ -84,6 +85,17 @@ class ReclamationController extends AbstractController
         $form->add('Ajouter', SubmitType::class);
 
         $form->handleRequest($request);
+       
+        $inappropriateVocabulary = ['hot', 'sexy', 'shit','fuck'];
+    // Replace the above array with your own list of inappropriate words
+    
+    $ObjetReclamation = $Reclamation->getObjetReclamation();
+    
+    foreach ($inappropriateVocabulary as $word) {
+        if (strpos($ObjetReclamation, $word) !== false) {
+            return $this->redirectToRoute('erreur');
+        }
+    }
     
 
         if( $form->isSubmitted() && $form->isValid())
@@ -103,7 +115,7 @@ class ReclamationController extends AbstractController
          $em->persist($Reclamation);
          $em->flush();
 
-        
+          
          return $this->redirectToRoute('AddSuccess');
         
         
@@ -114,7 +126,7 @@ class ReclamationController extends AbstractController
            
         ]);
 
-       
+          
     }
     #[Route('/upreclamation/{id}', name: 'up')]
 
@@ -193,6 +205,16 @@ public function typeReclamationPlusReclamee(EntityManagerInterface $entityManage
             'typeCounts' => $typeCounts
         ]);
     }
+    
+    #[Route('/erreur', name: 'erreur')]
+    public function erreur()
+{
+    return $this->render('FrontReclamation/erreur.html.twig', [
+        'message' => 'you use word inappropriate.',
+    ]);
+}
+
+  
 }
 
 
